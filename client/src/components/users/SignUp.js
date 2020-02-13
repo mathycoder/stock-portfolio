@@ -4,15 +4,13 @@ import { connect } from 'react-redux'
 // import { signupUser } from '../../actions/userActions.js'
 
 const SignUp = ({ signupTeacher }) => {
-  const [ firstName, setFirstName ] = useState('')
-  const [ lastName, setLastName ] = useState('')
+  const [ name, setName ] = useState('')
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
 
   const submitHandler = () => {
     const data = {
-      first_name: firstName,
-      last_name: lastName,
+      name: name,
       email: email,
       password: password
     }
@@ -23,29 +21,24 @@ const SignUp = ({ signupTeacher }) => {
     <div className="signup-wrapper">
       <div className="signup-form">
         <div className="flexseats-title">
-          <strong>Stock</strong>Portfolio Sign Up
+          <strong>Register</strong>
         </div>
+
         <input
           type="text"
-          placeholder="Enter first name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Enter last name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter email"
+          placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Enter password"
+          placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
