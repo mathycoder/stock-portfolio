@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import './signup.css'
 import { connect } from 'react-redux'
-// import { signupUser } from '../../actions/userActions.js'
+import { signupUser } from '../../actions/userActions.js'
 
-const SignUp = ({ signupTeacher }) => {
+const SignUp = ({ signupUser, history }) => {
   const [ name, setName ] = useState('')
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
@@ -14,7 +14,7 @@ const SignUp = ({ signupTeacher }) => {
       email: email,
       password: password
     }
-    //signupUser(data)
+    signupUser(data, history)
   }
 
   return (
@@ -55,10 +55,10 @@ const SignUp = ({ signupTeacher }) => {
 //   return {}
 // }
 //
-// function mapDispatchToProps(dispatch){
-//   return {
-//     signupTeacher: (data) => dispatch(signupTeacher(data))
-//   }
-// }
+function mapDispatchToProps(dispatch){
+  return {
+    signupUser: (data, history) => dispatch(signupUser(data, history))
+  }
+}
 
-export default connect(null, null)(SignUp)
+export default connect(null, mapDispatchToProps)(SignUp)
