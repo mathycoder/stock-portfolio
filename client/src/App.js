@@ -3,6 +3,7 @@ import Login from './components/sessions/Login'
 import Logout from './components/sessions/Logout'
 import SignUp from './components/users/SignUp'
 import NavBar from './components/navBar/NavBar'
+import FlashMessage from './components/flash/FlashMessage'
 import PortfolioContainer from './components/portfolio/PortfolioContainer'
 import { getCurrentUser } from './actions/currentUserActions.js'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
@@ -26,8 +27,6 @@ const App = ({ currentUser, getCurrentUser }) => {
     )
   }
 
-//{ currentUser ? renderRoutes() : null }
-
   return (
     <Router>
       <div className="App">
@@ -35,7 +34,8 @@ const App = ({ currentUser, getCurrentUser }) => {
           <NavBar />
         </header>
         <main>
-          {renderRoutes()}
+          <FlashMessage />
+          { currentUser ? renderRoutes() : null }
         </main>
       </div>
     </Router>

@@ -1,11 +1,18 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const PortfolioContainer = () => {
+const PortfolioContainer = ({ currentUser }) => {
   return (
     <div>
-      Portfolio Container
+      <h1>{`Portfolio ($____)`}</h1>
     </div>
   )
 }
 
-export default PortfolioContainer
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+export default connect(mapStateToProps, null)(PortfolioContainer)
