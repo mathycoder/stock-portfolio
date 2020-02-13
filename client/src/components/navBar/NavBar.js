@@ -29,21 +29,15 @@ const NavBar = ({ currentUser }) => {
     )
   }
 
-  return (
-    <div className="navbar-wrapper">
-      {currentUser && currentUser !== 'none' ? loggedInNavBar() : loggedOutNavBar()}
-    </div>
-  )
-
-  // if (currentUser){
-  //   return (
-  //     <div className="navbar-wrapper">
-  //       {currentUser !== 'none' ? loggedInNavBar() : loggedOutNavBar()}
-  //     </div>
-  //   )
-  // } else {
-  //   return null
-  // }
+  if (currentUser){
+    return (
+      <div className="navbar-wrapper">
+        {currentUser !== 'none' ? loggedInNavBar() : loggedOutNavBar()}
+      </div>
+    )
+  } else {
+    return null
+  }
 
 }
 
