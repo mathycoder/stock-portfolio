@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_181054) do
     t.string "email"
     t.string "password_digest"
     t.string "name"
+    t.float "balance", default: 5000.0
   end
 
 end
