@@ -22,6 +22,28 @@
   font-size: 24px;
 }
 
+.navbar-wrapper .title .title-A {
+  font-weight: bold
+}
+
+.navbar-wrapper .title .title-A::after {
+  content: 'Stock'
+}
+
+.navbar-wrapper .title .title-B::after {
+  content: 'Portfolio'
+}
+
+@media screen and (max-width: 500px){
+  .navbar-wrapper .title .title-A::after {
+    content: 'S'
+  }
+
+  .navbar-wrapper .title .title-B::after {
+    content: 'P'
+  }
+}
+
 .navbar-wrapper .logout {
   margin-left: auto;
   margin-right: 20px;
