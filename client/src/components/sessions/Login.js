@@ -18,7 +18,7 @@ const Login = ({ login, history }) => {
     <div className="signup-wrapper">
       <div className="signup-form">
         <div className="flexseats-title">
-          Login
+          <strong>Login</strong>
         </div>
         <input
           type="text"
