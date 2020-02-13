@@ -5,7 +5,7 @@ import SignUp from './components/users/SignUp'
 import NavBar from './components/navBar/NavBar'
 import { getCurrentUser } from './actions/currentUserActions.js'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-// import PrivateRoute from './routes/PrivateRoute'
+import PrivateRoute from './routes/PrivateRoute'
 import { connect } from 'react-redux'
 
 const App = ({ currentUser, getCurrentUser }) => {
@@ -18,7 +18,7 @@ const App = ({ currentUser, getCurrentUser }) => {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/logout" component={Logout} />
+        <PrivateRoute path="/logout" component={Logout} />
         <Route exact path="/signup" component={SignUp} />
       </Switch>
     )
