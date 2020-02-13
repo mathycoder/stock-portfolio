@@ -10,9 +10,7 @@ const NavBar = ({ currentUser }) => {
   const loggedInNavBar = () => {
     return (
       <>
-        <div className="title">
-          <NavLink to="/classes">{title()}</NavLink>
-        </div>
+        <div className="title">{title()}</div>
         <div><NavLink to="/portfolio">Portfolio</NavLink></div>
         <div><NavLink to="/transactions">Transactions</NavLink></div>
         <div className="logout"><NavLink to="/logout">Logout</NavLink></div>
