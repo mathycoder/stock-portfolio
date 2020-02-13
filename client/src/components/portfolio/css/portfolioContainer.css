@@ -1,0 +1,9 @@
+.portfolio-container-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 80px 1fr;
+}
+
+.portfolio-container-wrapper .portfolio-header {
+  grid-column: 1 / 3;
+}
