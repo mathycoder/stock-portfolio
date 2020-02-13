@@ -2,6 +2,20 @@ class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:create, :get_current_user]
 
   def create
+    @user = User.find_by(email: params[:session][:email])
+    if @user && @user.authenticate(params[:session][:password])
+      session[:user_id] = @user.id
+      render json: {
+        user: {
+          name: @user.name,
+          email: @user.email,
+          id: @user.id
+        }}, status: 201
+    else
+      render json: {
+        error: "Invalid Credentials", status: 422
+      }
+    end
   end
 
   def get_current_user
