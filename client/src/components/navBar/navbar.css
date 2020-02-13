@@ -21,3 +21,8 @@
 .navbar-wrapper .title {
   font-size: 24px;
 }
+
+.navbar-wrapper .logout {
+  margin-left: auto;
+  margin-right: 20px;
+}

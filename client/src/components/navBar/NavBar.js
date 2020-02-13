@@ -13,8 +13,9 @@ const NavBar = ({ currentUser }) => {
         <div className="title">
           <NavLink to="/classes">{title()}</NavLink>
         </div>
-        <div><strong>{`Logged in as ${currentUser.name}`}</strong></div>
-        <div><NavLink to="/logout">Logout</NavLink></div>
+        <div><NavLink to="/portfolio">Portfolio</NavLink></div>
+        <div><NavLink to="/transactions">Transactions</NavLink></div>
+        <div className="logout"><NavLink to="/logout">Logout</NavLink></div>
       </>
     )
   }

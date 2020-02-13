@@ -8,11 +8,13 @@ const PortfolioContainer = ({ currentUser }) => {
   return (
     <div className="portfolio-container-wrapper">
       <div className="portfolio-header">
-        <h3>Portfolio | Transactions</h3>
+        <div className="portfolio-title">
+          {`Portfolio ($5234.32)`}
+        </div>
       </div>
-      <MyStocks />
-
-      <div className="new-transaction-wrapper">
+      <div className="stocks-and-transactions-container">
+        <MyStocks />
+        <div className="divider"></div>
         <NewTransaction />
       </div>
     </div>
