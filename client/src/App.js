@@ -3,6 +3,7 @@ import Login from './components/sessions/Login'
 import Logout from './components/sessions/Logout'
 import SignUp from './components/users/SignUp'
 import NavBar from './components/navBar/NavBar'
+import PortfolioContainer from './components/portfolio/PortfolioContainer'
 import { getCurrentUser } from './actions/currentUserActions.js'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import PrivateRoute from './routes/PrivateRoute'
@@ -20,6 +21,7 @@ const App = ({ currentUser, getCurrentUser }) => {
         <Route exact path="/login" component={Login} />
         <PrivateRoute path="/logout" component={Logout} />
         <Route exact path="/signup" component={SignUp} />
+        <PrivateRoute path="/portfolio" component={PortfolioContainer} />
       </Switch>
     )
   }

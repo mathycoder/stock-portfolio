@@ -15,7 +15,7 @@ export function signupUser(userData, history){
         } else {
           dispatch({ type: 'SET_CURRENT_USER', user })
           //dispatch({ type: 'ADD_FLASH_MESSAGE', message: "Created New Account" })
-          //history.push('/classes')
+          history.push('/portfolio')
         }
       })
       .catch(console.log)
