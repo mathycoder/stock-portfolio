@@ -13,7 +13,7 @@ const NavBar = ({ currentUser }) => {
         <div className="title">
           <NavLink to="/classes">{title()}</NavLink>
         </div>
-        <div><strong>{`Logged in as ${currentUser.firstName}`}</strong></div>
+        <div><strong>{`Logged in as ${currentUser.name}`}</strong></div>
         <div><NavLink to="/logout">Logout</NavLink></div>
       </>
     )
