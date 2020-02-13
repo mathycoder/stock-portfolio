@@ -1,0 +1,27 @@
+.mystocks-wrapper {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.mystocks-title {
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.stock-line {
+  display: grid;
+  font-size: 18px;
+  grid-template-columns: 2fr 1fr;
+  margin: 18px 0;
+}
+
+.stock-line .value {
+  margin-left: auto;
+}
+
+.stock-separator {
+  background-color: white;
+  border: 1.5px solid black;
+  border-radius: 50px;
+}

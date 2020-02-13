@@ -8,11 +8,10 @@ const PortfolioContainer = ({ currentUser }) => {
   return (
     <div className="portfolio-container-wrapper">
       <div className="portfolio-header">
-        <h1>{`Portfolio ($____)`}</h1>
+        <h3>Portfolio | Transactions</h3>
       </div>
-      <div className="mystocks-wrapper">
-        <MyStocks />
-      </div>
+      <MyStocks />
+
       <div className="new-transaction-wrapper">
         <NewTransaction />
       </div>
