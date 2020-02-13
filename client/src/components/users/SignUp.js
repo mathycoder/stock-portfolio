@@ -8,7 +8,8 @@ const SignUp = ({ signupUser, history }) => {
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault()
     const data = {
       name: name,
       email: email,
@@ -19,42 +20,45 @@ const SignUp = ({ signupUser, history }) => {
 
   return (
     <div className="signup-wrapper">
-      <div className="signup-form">
+      <form
+        className="signup-form"
+        onSubmit={(e) => submitHandler(e)}
+      >
         <div className="flexseats-title">
           <strong>Register</strong>
         </div>
 
         <input
+          required
           type="text"
           placeholder="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
+          required
           type="text"
           placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
+          required
           type="password"
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button
-          onClick={() => submitHandler()}
-          className="myButton">Create Account
-        </button>
-      </div>
+        <input
+          type="submit"
+          value="Create Account"
+          className="myButton"
+        />
+      </form>
     </div>
   )
 }
 
-// function mapStateToProps(state){
-//   return {}
-// }
-//
 function mapDispatchToProps(dispatch){
   return {
     signupUser: (data, history) => dispatch(signupUser(data, history))
