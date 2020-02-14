@@ -11,6 +11,9 @@ gem 'pg'
 
 # Run both server and frontend at the same time
 gem 'foreman'
+gem 'pry'
+gem 'faraday'
+gem 'dotenv-rails'
 
 
 # Use Puma as the app server

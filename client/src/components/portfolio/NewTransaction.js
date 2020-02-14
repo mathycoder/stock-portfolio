@@ -1,14 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { symbolLookup } from '../../actions/stockApiActions.js'
 import './css/newTransaction.css'
 
-const NewTransaction = () => {
+const NewTransaction = ({ symbolLookup }) => {
+  const [symbol, setSymbol] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    symbolLookup(symbol)
+  }
+
   return (
     <div className="new-transaction-wrapper">
-      <form className="transaction-form signup-form">
+      <form
+        className="transaction-form signup-form"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <div className="total-cash">
           {`Cash - $5000.00`}
         </div>
         <input
+          value={symbol}
+          onChange={e => setSymbol(e.target.value)}
           type="text"
           placeholder="Ticker"
         />
@@ -26,4 +40,10 @@ const NewTransaction = () => {
   )
 }
 
-export default NewTransaction
+const mapDispatchToProps = dispatch => {
+  return {
+    symbolLookup: query => dispatch(symbolLookup(query))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(NewTransaction)
