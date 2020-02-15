@@ -7,6 +7,10 @@ class Stock
       req.params['apikey'] = ENV['ALPHA_VANTAGE_KEY']
     end
     resp = JSON.parse(resp.body)
-    current_price = resp["Time Series (1min)"].first[1]["4. close"].to_f
+    if resp["Error Message"]
+      "invalid symbol"
+    else
+      resp["Time Series (1min)"].first[1]["4. close"].to_f
+    end
   end
 end

@@ -42,7 +42,9 @@ export function addTransaction(symbol, shares){
         if (json.error){
           dispatch({ type: 'ADD_FLASH_MESSAGE', message: json.error })
         } else {
+          const { symbol, shares, at_price } = json.transaction
           dispatch({ type: 'ADD_TRANSACTION', transaction: json.transaction, currentUser: json.currentUser })
+          dispatch({ type: 'ADD_FLASH_MESSAGE', message: `Purchased ${shares} share(s) of ${symbol} @ $${at_price}` })
         }
       })
       .catch(console.log)
