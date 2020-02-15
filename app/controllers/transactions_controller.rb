@@ -1,9 +1,9 @@
 class TransactionsController < ApplicationController
   def index
+    render json: current_user.transactions, status: 201
   end
 
   def create
-    binding.pry
     @transaction = current_user.transactions.build(transaction_params)
     @transaction.at_price = Stock.lookup_price(@transaction.symbol)
     cash = current_user.balance
