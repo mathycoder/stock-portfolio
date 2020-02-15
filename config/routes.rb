@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/stocks/lookup', to: 'stocks#lookup'
 
   resources :users, only: [:create]
+  resources :transactions, only: [:create]
 end
