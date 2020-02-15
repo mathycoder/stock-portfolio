@@ -15,6 +15,11 @@ function transactionsById(state = {}, action) {
         ...normalizedObj(action.transactions)
       }
 
+    case 'ADD_TRANSACTION':
+      return {
+        ...state, ...normalizedObj([action.transaction])
+      }
+
     default:
       return state;
   }
@@ -26,6 +31,11 @@ function allTransactions(state = [], action) {
     case 'FETCH_TRANSACTIONS':
       return [
         ...action.transactions.map(transaction => `transaction${transaction.id}`)
+      ]
+
+    case 'ADD_TRANSACTION':
+      return [
+        ...state, `transaction${action.transaction.id}`
       ]
 
     default:
