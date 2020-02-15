@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { symbolLookup } from '../../actions/stockApiActions.js'
+import { addTransaction } from '../../actions/transactionActions.js'
 import './css/newTransaction.css'
 
-const NewTransaction = ({ symbolLookup }) => {
+const NewTransaction = ({ addTransaction }) => {
   const [symbol, setSymbol] = useState('')
+  const [shares, setShares] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    symbolLookup(symbol)
+    addTransaction(symbol, shares)
   }
 
   return (
@@ -27,6 +28,8 @@ const NewTransaction = ({ symbolLookup }) => {
           placeholder="Ticker"
         />
         <input
+          value={shares}
+          onChange={e => setShares(e.target.value)}
           type="text"
           placeholder="Qty"
         />
@@ -42,7 +45,7 @@ const NewTransaction = ({ symbolLookup }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    symbolLookup: query => dispatch(symbolLookup(query))
+    addTransaction: (symbol, shares) => dispatch(addTransaction(symbol, shares))
   }
 }
 

@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  get '/stocks/lookup', to: 'stocks#lookup'
+  # get '/stocks/lookup', to: 'stocks#lookup'
 
   resources :users, only: [:create]
-  resources :transactions, only: [:create]
+  resources :transactions, only: [:create, :index]
 end
