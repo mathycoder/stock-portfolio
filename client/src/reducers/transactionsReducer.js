@@ -24,9 +24,9 @@ function allTransactions(state = [], action) {
 
   switch(action.type) {
     case 'FETCH_TRANSACTIONS':
-      return {
+      return [
         ...action.transactions.map(transaction => `transaction${transaction.id}`)
-      }
+      ]
 
     default:
       return state;
