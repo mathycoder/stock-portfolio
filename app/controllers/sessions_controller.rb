@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
           name: @user.name,
           email: @user.email,
           id: @user.id,
-          balance: @user.balance
+          cash: @user.cash
         }}, status: 201
     else
       render json: {
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
           name: current_user.name,
           email: current_user.email,
           id: current_user.id,
-          balance: current_user.balance
+          cash: current_user.cash
         }}, status: 201
     else
       render json: {

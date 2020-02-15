@@ -16,7 +16,7 @@ function currentUserReducer(state = null, action) {
     case 'ADD_TRANSACTION':
       return {
         ...state,
-        balance: action.currentUser.balance
+        cash: action.currentUser.cash
       }
 
     default:

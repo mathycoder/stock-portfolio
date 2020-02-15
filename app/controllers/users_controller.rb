@@ -10,7 +10,8 @@ class UsersController < ApplicationController
         user: {
           name: @user.name,
           email: @user.email,
-          id: @user.id
+          id: @user.id,
+          cash: @user.cash
           }
         }, status: 201
     else

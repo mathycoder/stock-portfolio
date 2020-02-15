@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_02_15_213107) do
 
   create_table "stocks", force: :cascade do |t|
     t.string "symbol"
-    t.integer "shares"
+    t.integer "shares", default: 0
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_02_15_213107) do
     t.string "email"
     t.string "password_digest"
     t.string "name"
-    t.float "balance", default: 5000.0
+    t.float "cash", default: 5000.0
   end
 
 end

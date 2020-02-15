@@ -19,7 +19,7 @@ const NewTransaction = ({ addTransaction, currentUser }) => {
         onSubmit={(e) => handleSubmit(e)}
       >
         <div className="total-cash">
-          {`Cash - $${currentUser.balance.toFixed(2)}`}
+          {`Cash - $${currentUser.cash.toFixed(2)}`}
         </div>
         <input
           value={symbol}
