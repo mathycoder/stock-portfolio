@@ -4,8 +4,7 @@ import Logout from './components/sessions/Logout'
 import SignUp from './components/users/SignUp'
 import NavBar from './components/navBar/NavBar'
 import FlashMessage from './components/flash/FlashMessage'
-import PortfolioContainer from './components/portfolio/PortfolioContainer'
-import Transactions from './components/portfolio/Transactions'
+import PortfolioRouter from './components/portfolio/PortfolioRouter'
 import { getCurrentUser } from './actions/currentUserActions.js'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import PrivateRoute from './routes/PrivateRoute'
@@ -23,8 +22,7 @@ const App = ({ currentUser, getCurrentUser }) => {
         <Route exact path="/login" component={Login} />
         <PrivateRoute path="/logout" component={Logout} />
         <Route exact path="/signup" component={SignUp} />
-        <PrivateRoute path="/portfolio" component={PortfolioContainer} />
-        <PrivateRoute path="/transactions" component={Transactions} />
+        <PrivateRoute path="/portfolio" component={PortfolioRouter} />
       </Switch>
     )
   }

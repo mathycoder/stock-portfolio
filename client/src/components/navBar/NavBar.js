@@ -13,8 +13,8 @@ const NavBar = ({ currentUser }) => {
         <div className="title">
           <span className="title-A"></span><span className="title-B"></span>
         </div>
-        <div><NavLink to="/portfolio">Portfolio</NavLink></div>
-        <div><NavLink to="/transactions">Transactions</NavLink></div>
+        <div><NavLink to="/portfolio/current">Portfolio</NavLink></div>
+        <div><NavLink to="/portfolio/transactions">Transactions</NavLink></div>
         <div className="logout"><NavLink to="/logout">Logout</NavLink></div>
       </>
     )

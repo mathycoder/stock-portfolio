@@ -10,6 +10,11 @@ export default transactionsReducer
 function transactionsById(state = {}, action) {
 
   switch(action.type) {
+    case 'FETCH_TRANSACTIONS':
+      debugger
+      return {
+        ...state
+      }
 
     default:
       return state;
