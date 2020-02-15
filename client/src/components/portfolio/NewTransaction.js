@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addTransaction } from '../../actions/transactionActions.js'
 import './css/newTransaction.css'
 
-const NewTransaction = ({ addTransaction }) => {
+const NewTransaction = ({ addTransaction, currentUser }) => {
   const [symbol, setSymbol] = useState('')
   const [shares, setShares] = useState('')
 
@@ -19,7 +19,7 @@ const NewTransaction = ({ addTransaction }) => {
         onSubmit={(e) => handleSubmit(e)}
       >
         <div className="total-cash">
-          {`Cash - $5000.00`}
+          {`Cash - $${currentUser.balance.toFixed(2)}`}
         </div>
         <input
           value={symbol}
@@ -43,10 +43,16 @@ const NewTransaction = ({ addTransaction }) => {
   )
 }
 
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     addTransaction: (symbol, shares) => dispatch(addTransaction(symbol, shares))
   }
 }
 
-export default connect(null, mapDispatchToProps)(NewTransaction)
+export default connect(mapStateToProps, mapDispatchToProps)(NewTransaction)
