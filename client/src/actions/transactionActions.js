@@ -38,11 +38,11 @@ export function addTransaction(symbol, shares){
       body: JSON.stringify(params)
     })
       .then(resp => resp.json())
-      .then(transaction => {
-        if (transaction.error){
-          dispatch({ type: 'ADD_FLASH_MESSAGE', message: transaction.full_messages[0] })
+      .then(json => {
+        if (json.error){
+          dispatch({ type: 'ADD_FLASH_MESSAGE', message: json.error })
         } else {
-          dispatch({ type: 'ADD_TRANSACTION', transaction })
+          dispatch({ type: 'ADD_TRANSACTION', transaction: json.transaction, currentUser: json.currentUser })
         }
       })
       .catch(console.log)

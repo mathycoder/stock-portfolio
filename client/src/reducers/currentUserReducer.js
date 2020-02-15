@@ -13,6 +13,12 @@ function currentUserReducer(state = null, action) {
     case 'CLEAR_CURRENT_USER':
       return 'none'
 
+    case 'ADD_TRANSACTION':
+      return {
+        ...state,
+        balance: action.currentUser.balance
+      }
+
     default:
       return state;
   }
