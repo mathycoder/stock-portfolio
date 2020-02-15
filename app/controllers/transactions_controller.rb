@@ -14,7 +14,7 @@ class TransactionsController < ApplicationController
       @transaction.at_price = price
       cash = current_user.cash
       cost = @transaction.at_price * @transaction.shares
-      stock = Stock.find_or_create_by(symbol: @transaction.symbol)
+      stock = Stock.find_or_create_by(symbol: @transaction.symbol, user_id: current_user.id)
       if cost <= cash
         if @transaction.save
           stock.update(shares: stock.shares + @transaction.shares)

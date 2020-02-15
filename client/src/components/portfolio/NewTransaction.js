@@ -23,7 +23,7 @@ const NewTransaction = ({ addTransaction, currentUser }) => {
         </div>
         <input
           value={symbol}
-          onChange={e => setSymbol(e.target.value)}
+          onChange={e => setSymbol(e.target.value.toUpperCase())}
           type="text"
           placeholder="Ticker"
         />
