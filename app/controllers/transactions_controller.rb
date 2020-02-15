@@ -18,12 +18,13 @@ class TransactionsController < ApplicationController
       if cost <= cash
         if @transaction.save
           stock.update(shares: stock.shares + @transaction.shares)
-          current_user.cash = cash - cost
+          current_user.update(cash: cash - cost)
           current_user.stocks << stock if !stock.user_id
           current_user.save
           render json: {
             transaction: @transaction,
-            currentUser: current_user
+            currentUser: current_user,
+            stock: stock
           }, status: 201
         else
           render json: {

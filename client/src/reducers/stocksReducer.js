@@ -17,7 +17,7 @@ function stocksById(state = {}, action) {
 
     case 'ADD_TRANSACTION':
       return {
-        ...state, ...normalizedObj([action.transaction])
+        ...state, ...normalizedObj([action.stock])
       }
 
     default:
@@ -32,6 +32,12 @@ function allStocks(state = [], action) {
       return [
         ...action.stocks.map(stock => `stock${stock.id}`)
       ]
+
+    case 'ADD_TRANSACTION':
+      const newState = state.includes(`stock${action.stock.id}`)
+        ? [...state]
+        : [...state, `stock${action.stock.id}`]
+      return newState
 
     default:
       return state;

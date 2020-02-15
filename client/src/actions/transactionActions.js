@@ -43,7 +43,7 @@ export function addTransaction(symbol, shares){
           dispatch({ type: 'ADD_FLASH_MESSAGE', message: json.error })
         } else {
           const { symbol, shares, at_price } = json.transaction
-          dispatch({ type: 'ADD_TRANSACTION', transaction: json.transaction, currentUser: json.currentUser })
+          dispatch({ type: 'ADD_TRANSACTION', transaction: json.transaction, currentUser: json.currentUser, stock: json.stock })
           dispatch({ type: 'ADD_FLASH_MESSAGE', message: `Purchased ${shares} share(s) of ${symbol} @ $${at_price}` })
         }
       })
