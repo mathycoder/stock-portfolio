@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :transactions
+  has_many :stocks, through: :transactions
   validates :name, presence: true, length: { maximum: 20, minimum: 4 }
   validates :email, presence: true, uniqueness: true
   #validates :password, presence: true
