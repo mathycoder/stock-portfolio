@@ -1,6 +1,5 @@
 class Stock < ApplicationRecord
-  has_many :transactions
-  has_many :users, through: :transactions
+  belongs_to :user
 
   def self.lookup_price(query)
     resp = Faraday.get("https://www.alphavantage.co/query") do |req|

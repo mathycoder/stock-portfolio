@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_02_15_213107) do
   create_table "stocks", force: :cascade do |t|
     t.string "symbol"
     t.integer "shares", default: 0
+    t.integer "user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -26,7 +27,6 @@ ActiveRecord::Schema.define(version: 2020_02_15_213107) do
     t.integer "shares"
     t.float "at_price"
     t.integer "user_id"
-    t.integer "stock_id"
   end
 
   create_table "users", force: :cascade do |t|

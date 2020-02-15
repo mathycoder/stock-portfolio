@@ -3,6 +3,7 @@ class CreateStocks < ActiveRecord::Migration[5.2]
     create_table :stocks do |t|
       t.string :symbol
       t.integer :shares, default: 0
+      t.integer :user_id
     end
   end
 end

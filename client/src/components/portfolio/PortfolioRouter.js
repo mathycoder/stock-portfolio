@@ -4,10 +4,12 @@ import Transactions from './Transactions'
 import PortfolioContainer from './PortfolioContainer'
 import { connect } from 'react-redux'
 import { fetchTransactions } from '../../actions/transactionActions.js'
+import { fetchStocks } from '../../actions/stockActions.js'
 
-const PortfolioRouter = ({ fetchTransactions }) => {
+const PortfolioRouter = ({ fetchTransactions, fetchStocks }) => {
   useEffect(() => {
     fetchTransactions()
+    fetchStocks()
   }, [])
 
   return (
@@ -20,7 +22,8 @@ const PortfolioRouter = ({ fetchTransactions }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTransactions: () => dispatch(fetchTransactions())
+    fetchTransactions: () => dispatch(fetchTransactions()),
+    fetchStocks: () => dispatch(fetchStocks())
   }
 }
 

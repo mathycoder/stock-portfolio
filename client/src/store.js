@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 import currentUserReducer from './reducers/currentUserReducer.js'
 import flashReducer from './reducers/flashReducer.js'
 import transactionsReducer from './reducers/transactionsReducer.js'
+import stocksReducer from './reducers/stocksReducer.js'
 
 import { combineReducers } from 'redux'
 
@@ -10,7 +11,8 @@ import { combineReducers } from 'redux'
 const rootReducer = combineReducers({
   currentUser: currentUserReducer,
   flashMessage: flashReducer,
-  transactions: transactionsReducer
+  transactions: transactionsReducer,
+  stocks: stocksReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

@@ -11,4 +11,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create]
   resources :transactions, only: [:create, :index]
+  resources :stocks, only: [:index]
 end

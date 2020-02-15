@@ -6,7 +6,6 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
       t.integer :shares
       t.float :at_price
       t.integer :user_id
-      t.integer :stock_id
     end
   end
 end

@@ -14,11 +14,13 @@ class TransactionsController < ApplicationController
       @transaction.at_price = price
       cash = current_user.cash
       cost = @transaction.at_price * @transaction.shares
-      @transaction.stock = Stock.find_or_create_by(symbol: @transaction.symbol)
+      stock = Stock.find_or_create_by(symbol: @transaction.symbol)
       if cost <= cash
         if @transaction.save
-          @transaction.stock.update(shares: @transaction.stock.shares + @transaction.shares)
-          current_user.update(cash: cash - cost)
+          stock.update(shares: stock.shares + @transaction.shares)
+          current_user.cash = cash - cost
+          current_user.stocks << stock if !stock.user_id
+          current_user.save
           render json: {
             transaction: @transaction,
             currentUser: current_user
