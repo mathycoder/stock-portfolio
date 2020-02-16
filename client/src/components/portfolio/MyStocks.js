@@ -11,7 +11,7 @@ const MyStocks = ({ stocks }) => {
           <div className="stock-wrapper" key={stockId}>
             <div className="stock-line">
               <div className="shares">{`${stock.symbol} - ${stock.shares} Shares`}</div>
-              <div className="value">{`$2043.09`}</div>
+              <div className="value">{`$${(stock.shares * stock.currentPrice).toFixed(2)}`}</div>
             </div>
             <div className="stock-separator"></div>
           </div>

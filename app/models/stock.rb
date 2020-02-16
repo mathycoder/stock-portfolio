@@ -1,22 +1,22 @@
 class Stock < ApplicationRecord
   belongs_to :user
+
   def self.lookup_price(query)
-    resp = Faraday.get("https://www.alphavantage.co/query") do |req|
-      req.params['function'] = 'TIME_SERIES_INTRADAY'
-      req.params['interval'] = '1min'
-      req.params['symbol'] = query
-      req.params['apikey'] = ENV['ALPHA_VANTAGE_KEY']
+    resp = Faraday.get("https://cloud.iexapis.com/stable/stock/#{query}/quote") do |req|
+      req.params['token'] = ENV['IEX_KEY']
     end
-    resp = JSON.parse(resp.body)
-    if resp["Error Message"]
-      "invalid symbol"
+    if resp.body == "Unknown symbol"
+      "Unknown symbol"
     else
-      resp["Time Series (1min)"].first[1]["4. close"].to_f
+      resp = JSON.parse(resp.body)["latestPrice"]
     end
   end
 
+  #https://cloud.iexapis.com/v1
+
   def self.with_prices(stocks)
-    stocks.each{|stock| stock.update(current_price: Stock.lookup_price(stock.symbol))}
+    stocks
+    #stocks.each{|stock| stock.update(current_price: Stock.lookup_price(stock.symbol))}
   end
 
 end
