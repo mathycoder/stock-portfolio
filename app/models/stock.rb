@@ -8,7 +8,7 @@ class Stock < ApplicationRecord
     if resp.body == "Unknown symbol"
       "Unknown symbol"
     else
-      resp = JSON.parse(resp.body)["latestPrice"]
+      resp = JSON.parse(resp.body)
     end
   end
 
@@ -19,7 +19,7 @@ class Stock < ApplicationRecord
       req.params['token'] = ENV['IEX_KEY']
     end
     resp = JSON.parse(resp.body)
-    stocks.each{ |stock| stock.update(current_price: resp[stock.symbol]["quote"]["latestPrice"]) }
+    stocks.each{ |stock| stock.update(current_price: resp[stock.symbol]["quote"]["latestPrice"], opening_price: resp[stock.symbol]["quote"]["open"]) }
     stocks
   end
 

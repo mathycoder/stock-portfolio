@@ -5,19 +5,19 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = current_user.transactions.build(transaction_params)
-    price = Stock.lookup_price(@transaction.symbol)
-    if price == "Unknown symbol"
+    prices = Stock.lookup_price(@transaction.symbol)
+    if prices == "Unknown symbol"
       render json: {
         error: "Invalid ticker symbol"
       }, status: 422
     else
-      @transaction.at_price = price
+      @transaction.at_price = prices["latestPrice"]
       cash = current_user.cash
       cost = @transaction.at_price * @transaction.shares
       stock = Stock.find_or_create_by(symbol: @transaction.symbol, user_id: current_user.id)
       if cost <= cash
         if @transaction.save
-          stock.update(shares: stock.shares + @transaction.shares, current_price: price)
+          stock.update(shares: stock.shares + @transaction.shares, current_price: prices["latestPrice"], opening_price: prices["open"])
           current_user.update(cash: cash - cost)
           current_user.stocks << stock if !stock.user_id
           current_user.save
