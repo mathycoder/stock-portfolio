@@ -21,7 +21,7 @@ class TransactionsController < ApplicationController
           if stock
             stock.update(shares: stock.shares + @transaction.shares, current_price: prices["latestPrice"], opening_price: prices["open"])
           else
-            stock = Stock.create(symbol: @transaction.symbol, shares: stock.shares + @transaction.shares, current_price: prices["latestPrice"], opening_price: prices["open"])
+            stock = Stock.create(symbol: @transaction.symbol, shares: @transaction.shares, current_price: prices["latestPrice"], opening_price: prices["open"])
           end
           current_user.update(cash: cash - cost)
           current_user.stocks << stock if !stock.user_id
