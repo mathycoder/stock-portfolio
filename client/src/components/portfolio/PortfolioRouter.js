@@ -12,6 +12,11 @@ const PortfolioRouter = ({ fetchTransactions, fetchStocks }) => {
     fetchStocks()
   }, [])
 
+  const interval = setInterval(() => {
+    //fetchStocks()
+    console.log("Fetching stock updates")
+  }, 5000);
+
   return (
     <Switch>
       <Route exact path="/portfolio/current" component={PortfolioContainer} />

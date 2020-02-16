@@ -14,10 +14,15 @@ class TransactionsController < ApplicationController
       @transaction.at_price = prices["latestPrice"]
       cash = current_user.cash
       cost = @transaction.at_price * @transaction.shares
-      stock = Stock.find_or_create_by(symbol: @transaction.symbol, user_id: current_user.id)
+      # stock = Stock.find_or_create_by(symbol: @transaction.symbol, user_id: current_user.id)
       if cost <= cash
         if @transaction.save
-          stock.update(shares: stock.shares + @transaction.shares, current_price: prices["latestPrice"], opening_price: prices["open"])
+          stock = Stock.find_by(symbol: @transaction.symbol, user_id: current_user.id)
+          if stock
+            stock.update(shares: stock.shares + @transaction.shares, current_price: prices["latestPrice"], opening_price: prices["open"])
+          else
+            stock = Stock.create(symbol: @transaction.symbol, shares: stock.shares + @transaction.shares, current_price: prices["latestPrice"], opening_price: prices["open"])
+          end
           current_user.update(cash: cash - cost)
           current_user.stocks << stock if !stock.user_id
           current_user.save
@@ -41,6 +46,6 @@ class TransactionsController < ApplicationController
 
   private
     def transaction_params
-      params.require(:transaction).permit(:shares, :symbol)
+      params.require(:transaction).permit(:shares, :symbol, :current_price, :opening_price)
     end
 end
