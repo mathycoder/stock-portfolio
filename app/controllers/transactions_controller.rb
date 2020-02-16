@@ -6,7 +6,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = current_user.transactions.build(transaction_params)
     price = Stock.lookup_price(@transaction.symbol)
-    if price == "invalid symbol"
+    if price == "Unknown symbol"
       render json: {
         error: "Invalid ticker symbol"
       }, status: 422
