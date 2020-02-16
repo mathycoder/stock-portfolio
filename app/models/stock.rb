@@ -22,5 +22,4 @@ class Stock < ApplicationRecord
     stocks.each{ |stock| stock.update(current_price: resp[stock.symbol]["quote"]["latestPrice"], opening_price: resp[stock.symbol]["quote"]["open"]) }
     stocks
   end
-
 end

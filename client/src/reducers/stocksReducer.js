@@ -51,7 +51,8 @@ function normalizedObj(stocks){
       symbol: stock.symbol,
       shares: stock.shares,
       id: stock.id,
-      currentPrice: stock.current_price
+      currentPrice: stock.current_price,
+      openingPrice: stock.opening_price
     }
   })
   return normObj

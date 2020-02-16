@@ -25,3 +25,15 @@
   border: 1.5px solid black;
   border-radius: 50px;
 }
+
+.mystocks-wrapper .stock-line .red {
+  color: red;
+}
+
+.mystocks-wrapper .stock-line .green {
+  color: green;
+}
+
+.mystocks-wrapper .stock-line .grey {
+  color: grey;
+}

@@ -14,7 +14,7 @@ const PortfolioContainer = ({ currentUser, stocks }) => {
     <div className="portfolio-container-wrapper">
       <div className="portfolio-header">
         <div className="portfolio-title">
-          {`Portfolio ($${totalValue})`}
+          {`Portfolio ($${totalValue.toFixed(2)})`}
         </div>
       </div>
       <div className="stocks-and-transactions-container">
