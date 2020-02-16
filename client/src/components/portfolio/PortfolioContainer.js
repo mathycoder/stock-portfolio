@@ -4,12 +4,17 @@ import NewTransaction from './NewTransaction'
 import { connect } from 'react-redux'
 import './css/portfolioContainer.css'
 
-const PortfolioContainer = ({ currentUser }) => {
+const PortfolioContainer = ({ currentUser, stocks }) => {
+  const totalValue = currentUser.cash + stocks.allIds.reduce((agg, stockId) => {
+    const stock = stocks.byId[stockId]
+    return agg + (stock.shares * stock.currentPrice)
+  }, 0)
+
   return (
     <div className="portfolio-container-wrapper">
       <div className="portfolio-header">
         <div className="portfolio-title">
-          {`Portfolio ($5234.32)`}
+          {`Portfolio ($${totalValue})`}
         </div>
       </div>
       <div className="stocks-and-transactions-container">
@@ -23,7 +28,8 @@ const PortfolioContainer = ({ currentUser }) => {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    stocks: state.stocks
   }
 }
 
