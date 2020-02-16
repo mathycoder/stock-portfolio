@@ -1,6 +1,5 @@
 class Stock < ApplicationRecord
   belongs_to :user
-
   def self.lookup_price(query)
     resp = Faraday.get("https://www.alphavantage.co/query") do |req|
       req.params['function'] = 'TIME_SERIES_INTRADAY'
@@ -15,4 +14,9 @@ class Stock < ApplicationRecord
       resp["Time Series (1min)"].first[1]["4. close"].to_f
     end
   end
+
+  def self.with_prices(stocks)
+    stocks.each{|stock| stock.update(current_price: Stock.lookup_price(stock.symbol))}
+  end
+
 end

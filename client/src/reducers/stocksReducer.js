@@ -50,7 +50,8 @@ function normalizedObj(stocks){
     normObj[`stock${stock.id}`] = {
       symbol: stock.symbol,
       shares: stock.shares,
-      id: stock.id
+      id: stock.id,
+      currentPrice: stock.current_price
     }
   })
   return normObj

@@ -4,6 +4,7 @@ class CreateStocks < ActiveRecord::Migration[5.2]
       t.string :symbol
       t.integer :shares, default: 0
       t.integer :user_id
+      t.float :current_price
     end
   end
 end

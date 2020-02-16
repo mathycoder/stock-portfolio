@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_02_15_213107) do
     t.string "symbol"
     t.integer "shares", default: 0
     t.integer "user_id"
+    t.float "current_price"
   end
 
   create_table "transactions", force: :cascade do |t|
