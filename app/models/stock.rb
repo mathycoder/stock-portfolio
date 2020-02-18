@@ -6,9 +6,14 @@ class Stock < ApplicationRecord
     # updates the cash in the current_user's wallet
     stock = self.find_by(symbol: transaction.symbol, user_id: current_user.id)
     if stock
-      stock.update(shares: stock.shares + transaction.shares, current_price: prices["latestPrice"], opening_price: prices["open"] || prices["previousClose"])
+      stock.update(shares: stock.shares + transaction.shares,
+                   current_price: prices["latestPrice"],
+                   opening_price: prices["open"] || prices["previousClose"])
     else
-      stock = Stock.create(symbol: transaction.symbol, shares: transaction.shares, current_price: prices["latestPrice"], opening_price: prices["open"] || prices["previousClose"])
+      stock = Stock.create(symbol: transaction.symbol,
+                           shares: transaction.shares,
+                           current_price: prices["latestPrice"],
+                           opening_price: prices["open"] || prices["previousClose"])
     end
     cost = transaction.at_price * transaction.shares
     current_user.update(cash: current_user.cash - cost)
@@ -39,7 +44,8 @@ class Stock < ApplicationRecord
     resp = JSON.parse(resp.body)
     stocks.each do |stock|
       open = resp[stock.symbol]["quote"]["open"] || resp[stock.symbol]["quote"]["previousClose"]
-      stock.update(current_price: resp[stock.symbol]["quote"]["latestPrice"], opening_price: open)
+      stock.update(current_price: resp[stock.symbol]["quote"]["latestPrice"],
+                   opening_price: open)
     end
     stocks
   end
