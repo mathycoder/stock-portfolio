@@ -12,19 +12,9 @@ class TransactionsController < ApplicationController
       }, status: 422
     else
       @transaction.at_price = prices["latestPrice"]
-      cash = current_user.cash
-      cost = @transaction.at_price * @transaction.shares
-      if cost <= cash
+      if @transaction.at_price * @transaction.shares <= current_user.cash
         if @transaction.save
-          stock = Stock.find_by(symbol: @transaction.symbol, user_id: current_user.id)
-          if stock
-            stock.update(shares: stock.shares + @transaction.shares, current_price: prices["latestPrice"], opening_price: prices["open"])
-          else
-            stock = Stock.create(symbol: @transaction.symbol, shares: @transaction.shares, current_price: prices["latestPrice"], opening_price: prices["open"])
-          end
-          current_user.update(cash: cash - cost)
-          current_user.stocks << stock if !stock.user_id
-          current_user.save
+          stock = Stock.log_transaction(@transaction, current_user, prices)
           render json: {
             transaction: @transaction,
             currentUser: current_user,
