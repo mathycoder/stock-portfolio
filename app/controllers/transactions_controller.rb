@@ -17,7 +17,9 @@ class TransactionsController < ApplicationController
           stock = Stock.log_transaction(@transaction, current_user, prices)
           render json: {
             transaction: @transaction,
-            currentUser: current_user,
+            currentUser: {
+              cash: current_user.cash
+            },
             stock: stock
           }, status: 201
         else
