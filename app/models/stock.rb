@@ -19,7 +19,10 @@ class Stock < ApplicationRecord
       req.params['token'] = ENV['IEX_KEY']
     end
     resp = JSON.parse(resp.body)
-    stocks.each{ |stock| stock.update(current_price: resp[stock.symbol]["quote"]["latestPrice"], opening_price: resp[stock.symbol]["quote"]["open"]) }
+    stocks.each do |stock|
+      open = resp[stock.symbol]["quote"]["open"] ? resp[stock.symbol]["quote"]["open"] : resp[stock.symbol]["quote"]["previousClose"]
+      stock.update(current_price: resp[stock.symbol]["quote"]["latestPrice"], opening_price: open)
+    end
     stocks
   end
 end

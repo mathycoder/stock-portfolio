@@ -14,7 +14,6 @@ class TransactionsController < ApplicationController
       @transaction.at_price = prices["latestPrice"]
       cash = current_user.cash
       cost = @transaction.at_price * @transaction.shares
-      # stock = Stock.find_or_create_by(symbol: @transaction.symbol, user_id: current_user.id)
       if cost <= cash
         if @transaction.save
           stock = Stock.find_by(symbol: @transaction.symbol, user_id: current_user.id)
