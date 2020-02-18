@@ -5,6 +5,7 @@ import PortfolioContainer from './PortfolioContainer'
 import { connect } from 'react-redux'
 import { fetchTransactions } from '../../actions/transactionActions.js'
 import { fetchStocks } from '../../actions/stockActions.js'
+import { useInterval } from '../../hooks/useInterval.js'
 
 const PortfolioRouter = ({ fetchTransactions, fetchStocks }) => {
   useEffect(() => {
@@ -12,10 +13,15 @@ const PortfolioRouter = ({ fetchTransactions, fetchStocks }) => {
     fetchStocks()
   }, [])
 
-  const interval = setInterval(() => {
-    //fetchStocks()
+  // const interval = setInterval(() => {
+  //   fetchStocks()
+  //   console.log("Fetching stock updates")
+  // }, 5000);
+
+  useInterval(() => {
+    fetchStocks()
     console.log("Fetching stock updates")
-  }, 5000);
+  }, 5000)
 
   return (
     <Switch>
