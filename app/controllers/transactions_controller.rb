@@ -12,10 +12,14 @@ class TransactionsController < ApplicationController
       }, status: 422
     else
       @transaction.at_price = prices["latestPrice"]
-      if @transaction.at_price * @transaction.shares <= current_user.cash
+      if @transaction.at_price * @transaction.shares > current_user.cash
+        render json: {
+          error: "You don't have enough cash for this purchase."
+        }, status: 422
+      else
         if @transaction.save
           stock = Stock.log_transaction(@transaction, prices)
-          current_user.update(cash: current_user.cash - @transaction.at_price * @transaction.shares)
+          current_user.pay_for_transaction(@transaction)
           render json: {
             transaction: @transaction,
             currentUser: {
@@ -28,10 +32,6 @@ class TransactionsController < ApplicationController
             error: @transaction.errors.full_messages[0]
             }, status: 422
         end
-      else
-        render json: {
-          error: "You don't have enough cash for this purchase."
-        }, status: 422
       end
     end
   end

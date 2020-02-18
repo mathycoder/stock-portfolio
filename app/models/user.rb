@@ -5,4 +5,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   #validates :password, presence: true
   has_secure_password
+
+  def pay_for_transaction(transaction)
+    self.update(cash: self.cash - transaction.at_price * transaction.shares)
+  end
 end
