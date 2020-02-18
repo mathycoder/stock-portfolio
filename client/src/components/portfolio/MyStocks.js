@@ -13,9 +13,23 @@ const MyStocks = ({ stocks }) => {
     }
   }
 
+  const alphabetizedStocks = () => {
+    return [...stocks.allIds].sort((stockIdA, stockIdB) => {
+      const stockA = stocks.byId[stockIdA]
+      const stockB = stocks.byId[stockIdB]
+      if (stockA.symbol < stockB.symbol){
+        return -1
+      } else if (stockA.symbol > stockB.symbol){
+        return 1
+      } else {
+        return 0
+      }
+    })
+  }
+
   return (
     <div className="mystocks-wrapper">
-      {stocks.allIds.map(stockId => {
+      {alphabetizedStocks().map(stockId => {
         const stock = stocks.byId[stockId]
         const color = determineColor(stock)
         return (

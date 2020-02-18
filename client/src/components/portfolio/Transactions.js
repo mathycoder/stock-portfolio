@@ -14,7 +14,7 @@ const Transactions = ({ transactions }) => {
           return (
             <div className="transaction-block" key={transactionId}>
               <div className="transaction-line">
-                {`BUY (${transaction.symbol}) - ${transaction.shares} Shares @ ${transaction.atPrice}`}
+                {`BUY (${transaction.symbol}) - ${transaction.shares} Shares @ ${transaction.atPrice.toFixed(2)}`}
               </div>
               <div className="stock-separator"></div>
             </div>
