@@ -14,7 +14,8 @@ class TransactionsController < ApplicationController
       @transaction.at_price = prices["latestPrice"]
       if @transaction.at_price * @transaction.shares <= current_user.cash
         if @transaction.save
-          stock = Stock.log_transaction(@transaction, current_user, prices)
+          stock = Stock.log_transaction(@transaction, prices)
+          current_user.update(cash: current_user.cash - @transaction.at_price * @transaction.shares)
           render json: {
             transaction: @transaction,
             currentUser: {

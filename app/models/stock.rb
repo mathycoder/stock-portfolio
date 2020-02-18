@@ -1,24 +1,21 @@
 class Stock < ApplicationRecord
   belongs_to :user
 
-  def self.log_transaction(transaction, current_user, prices)
+  def self.log_transaction(transaction, prices)
     # will either add to an existing stock's shares or create a new record
     # updates the cash in the current_user's wallet
+    current_user = transaction.user
     stock = self.find_by(symbol: transaction.symbol, user_id: current_user.id)
     if stock
       stock.update(shares: stock.shares + transaction.shares,
                    current_price: prices["latestPrice"],
                    opening_price: prices["open"] || prices["previousClose"])
     else
-      stock = Stock.create(symbol: transaction.symbol,
-                           shares: transaction.shares,
-                           current_price: prices["latestPrice"],
-                           opening_price: prices["open"] || prices["previousClose"])
+      stock = current_user.stocks.create(symbol: transaction.symbol,
+                                         shares: transaction.shares,
+                                         current_price: prices["latestPrice"],
+                                         opening_price: prices["open"] || prices["previousClose"])
     end
-    cost = transaction.at_price * transaction.shares
-    current_user.update(cash: current_user.cash - cost)
-    current_user.stocks << stock if !stock.user_id
-    current_user.save
     stock
   end
 
