@@ -18,7 +18,7 @@ const PortfolioContainer = ({ currentUser, stocks, loading }) => {
         </div>
       </div>
       <div className="stocks-and-transactions-container">
-        <MyStocks />
+        {loading ? <div className="loading-wrapper"></div> : <MyStocks /> }
         <div className="divider"></div>
         <NewTransaction />
       </div>
