@@ -9,7 +9,8 @@ const NewTransaction = ({ addTransaction, currentUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addTransaction(symbol, shares)
+    const check = window.confirm(`Are you sure you want to buy ${shares} ${shares === '1' ? 'share' : 'shares'} of ${symbol}?`)
+    if (check) { addTransaction(symbol, shares) }
   }
 
   return (
