@@ -14,11 +14,11 @@ const PortfolioContainer = ({ currentUser, stocks, loading }) => {
     <div className="portfolio-container-wrapper">
       <div className="portfolio-header">
         <div className="portfolio-title">
-          {loading ? 'Portfolio' : `Portfolio ($${totalValue.toFixed(2)})`}
+          {loading && stocks.allIds.length === 0 ? 'Portfolio' : `Portfolio ($${totalValue.toFixed(2)})`}
         </div>
       </div>
       <div className="stocks-and-transactions-container">
-        {loading ? <div className="loading-wrapper"></div> : <MyStocks /> }
+        {loading && stocks.allIds.length === 0 ? <div className="loading-wrapper"></div> : <MyStocks /> }
         <div className="divider"></div>
         <NewTransaction />
       </div>

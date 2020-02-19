@@ -1,5 +1,6 @@
 class StocksController < ApplicationController
   def index
-    render json: Stock.with_prices(current_user.stocks), status: 201
+    @stocks = current_user.stocks.length > 0 ? Stock.with_prices(current_user.stocks) : []
+    render json: @stocks, status: 201
   end
 end

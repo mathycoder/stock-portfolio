@@ -13,9 +13,9 @@ const PortfolioRouter = ({ fetchTransactions, fetchStocks }) => {
     fetchStocks()
   }, [])
 
-  // useInterval(() => {
-  //   fetchStocks()
-  // }, 30000)
+  useInterval(() => {
+    fetchStocks()
+  }, 30000)
 
   return (
     <Switch>
