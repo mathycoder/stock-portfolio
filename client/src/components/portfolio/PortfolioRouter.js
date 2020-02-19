@@ -7,14 +7,16 @@ import { fetchTransactions } from '../../actions/transactionActions.js'
 import { fetchStocks } from '../../actions/stockActions.js'
 import { useInterval } from '../../hooks/useInterval.js'
 
-const PortfolioRouter = ({ fetchTransactions, fetchStocks }) => {
+const PortfolioRouter = ({ fetchTransactions, fetchStocks, stocks }) => {
   useEffect(() => {
     fetchTransactions()
     fetchStocks()
   }, [])
 
   useInterval(() => {
-    fetchStocks()
+    if (stocks.allIds.length > 0) {
+      fetchStocks()
+    }
   }, 30000)
 
   return (
@@ -25,6 +27,12 @@ const PortfolioRouter = ({ fetchTransactions, fetchStocks }) => {
   )
 }
 
+const mapStateToProps = state => {
+  return {
+    stocks: state.stocks
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     fetchTransactions: () => dispatch(fetchTransactions()),
@@ -32,4 +40,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(PortfolioRouter)
+export default connect(mapStateToProps, mapDispatchToProps)(PortfolioRouter)
