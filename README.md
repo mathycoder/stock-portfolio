@@ -18,5 +18,7 @@ Step 4: Set up your Database
 Step 5: Boot up the front and backend with one rake command:
 * $ rake start
 
+# The live version...
 
-# stock-portfolio
+Check it out below using mobile or desktop:
+https://the-stock-portfolio.herokuapp.com/
