@@ -20,6 +20,9 @@ function transactionsById(state = {}, action) {
         ...state, ...normalizedObj([action.transaction])
       }
 
+    case 'CLEAR_CURRENT_USER':
+      return {}
+
     default:
       return state;
   }
@@ -37,6 +40,9 @@ function allTransactions(state = [], action) {
       return [
         ...state, `transaction${action.transaction.id}`
       ]
+
+    case 'CLEAR_CURRENT_USER':
+      return []
 
     default:
       return state;

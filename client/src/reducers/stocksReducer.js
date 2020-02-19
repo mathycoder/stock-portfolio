@@ -20,6 +20,9 @@ function stocksById(state = {}, action) {
         ...state, ...normalizedObj([action.stock])
       }
 
+    case 'CLEAR_CURRENT_USER':
+      return {}
+
     default:
       return state;
   }
@@ -38,6 +41,9 @@ function allStocks(state = [], action) {
         ? [...state]
         : [...state, `stock${action.stock.id}`]
       return newState
+
+    case 'CLEAR_CURRENT_USER':
+      return []
 
     default:
       return state;
