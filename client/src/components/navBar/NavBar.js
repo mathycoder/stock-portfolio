@@ -4,14 +4,12 @@ import { NavLink } from "react-router-dom"
 import { connect } from 'react-redux'
 
 const NavBar = ({ currentUser }) => {
-
-  const title = () => <><strong>Stock</strong>Portfolio</>
-
   const loggedInNavBar = () => {
     return (
       <>
         <div className="title">
-          <span className="title-A"></span><span className="title-B"></span>
+          <span className="title-A"></span>
+          <span className="title-B"></span>
         </div>
         <div><NavLink to="/portfolio/current">Portfolio</NavLink></div>
         <div><NavLink to="/portfolio/transactions">Transactions</NavLink></div>
@@ -24,7 +22,8 @@ const NavBar = ({ currentUser }) => {
     return (
       <>
         <div className="title">
-          <span className="title-A"></span><span className="title-B"></span>
+          <span className="title-A"></span>
+          <span className="title-B"></span>
         </div>
         <div><NavLink to="/login">Login</NavLink></div>
         <div><NavLink to="/signup">Sign Up</NavLink></div>

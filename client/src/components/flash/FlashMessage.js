@@ -4,9 +4,7 @@ import { flashDelete } from '../../actions/flashActions.js'
 import './flash.css'
 
 const FlashMessage = ({ flashDelete, flashMessage }) => {
-  const handleXClick = event => {
-    flashDelete()
-  }
+  const handleXClick = event => flashDelete()
 
   const renderMessage = () => {
     return (
@@ -21,11 +19,7 @@ const FlashMessage = ({ flashDelete, flashMessage }) => {
     )
   }
 
-  return (
-    <>
-      {flashMessage ? renderMessage() : ''}
-    </>
-  )
+  return <>{flashMessage ? renderMessage() : ''}</>
 }
 
 function mapStateToProps(state){
