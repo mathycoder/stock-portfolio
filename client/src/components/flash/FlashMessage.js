@@ -1,33 +1,31 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { flashDelete } from '../../actions/flashActions.js'
 import './flash.css'
 
-class FlashMessage extends Component {
-  handleXClick = event => {
-    this.props.flashDelete()
+const FlashMessage = ({ flashDelete, flashMessage }) => {
+  const handleXClick = event => {
+    flashDelete()
   }
 
-  renderMessage = () => {
+  const renderMessage = () => {
     return (
       <div className="flash-container">
-        <div className="flash-x" onClick={this.handleXClick}>
+        <div className="flash-x" onClick={handleXClick}>
           x
         </div>
         <div className="flash-message">
-          {this.props.flashMessage}
+          {flashMessage}
         </div>
       </div>
     )
   }
 
-  render(){
-    return (
-      <>
-        {this.props.flashMessage ? this.renderMessage() : ''}
-      </>
-    )
-  }
+  return (
+    <>
+      {flashMessage ? renderMessage() : ''}
+    </>
+  )
 }
 
 function mapStateToProps(state){

@@ -11,7 +11,7 @@ export function fetchTransactions(){
       .then(resp => resp.json())
       .then(transactions => {
         if (transactions.error){
-          dispatch({ type: 'ADD_FLASH_MESSAGE', message: transactions.full_messages[0] })
+          dispatch({ type: 'ADD_FLASH_MESSAGE', message: 'Error loading transactions history' })
         } else {
           dispatch({ type: 'FETCH_TRANSACTIONS', transactions })
         }

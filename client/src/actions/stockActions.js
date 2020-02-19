@@ -11,7 +11,7 @@ export function fetchStocks(){
       .then(resp => resp.json())
       .then(stocks => {
         if (stocks.error){
-          dispatch({ type: 'ADD_FLASH_MESSAGE', message: stocks.full_messages[0] })
+          dispatch({ type: 'ADD_FLASH_MESSAGE', message: 'Error loading stocks portfolio' })
         } else {
           dispatch({ type: 'FETCH_STOCKS', stocks })
         }
