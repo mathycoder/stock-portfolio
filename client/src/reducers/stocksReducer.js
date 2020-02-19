@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 
 const stocksReducer = combineReducers({
   byId: stocksById,
-  allIds: allStocks
+  allIds: allStocks,
+  loading: loadingStocks
 })
 
 export default stocksReducer
@@ -44,6 +45,19 @@ function allStocks(state = [], action) {
 
     case 'CLEAR_CURRENT_USER':
       return []
+
+    default:
+      return state;
+  }
+}
+
+function loadingStocks(state = false, action){
+  switch(action.type){
+    case 'FETCH_STOCKS_REQUEST':
+      return true;
+
+    case 'FETCH_STOCKS':
+      return false;
 
     default:
       return state;
