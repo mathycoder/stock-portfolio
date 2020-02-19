@@ -7,10 +7,7 @@ const Logout = ({ logout, history }) => {
     logout(history)
   }, [])
 
-  return (
-    <div className="home-page-wrapper">
-    </div>
-  )
+  return <div className="home-page-wrapper"></div>
 }
 
 function mapDispatchToProps(dispatch){
