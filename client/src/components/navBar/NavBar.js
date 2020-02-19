@@ -25,7 +25,7 @@ const NavBar = ({ currentUser }) => {
           <span className="title-A"></span>
           <span className="title-B"></span>
         </div>
-        <div><NavLink to="/login">Login</NavLink></div>
+        <div className="login"><NavLink to="/login">Login</NavLink></div>
         <div><NavLink to="/signup">Sign Up</NavLink></div>
       </>
     )
