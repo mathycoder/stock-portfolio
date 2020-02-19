@@ -1,25 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run this application locally:
 
-Things you may want to cover:
+Step 1: Fork and Clone this repository
 
-* Ruby version
+Step 2: install all of the Ruby gems by running
+* $ bundle install
 
-* System dependencies
+Step 3: install all node packages by running
+* $ npm install
 
-* Configuration
+Step 4: Set up your Database
+* This uses postgres, so make sure you have something like PostgreSQL 11 running
+* $ rake db:create
+* $ rake db:migrate
 
-* Database creation
+Step 5: Boot up the front and backend with one rake command:
+* $ rake start
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # stock-portfolio
