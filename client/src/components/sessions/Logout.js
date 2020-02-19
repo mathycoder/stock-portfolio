@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { logout } from '../../actions/currentUserActions'
 import { connect } from 'react-redux'
 
 const Logout = ({ logout, history }) => {
+  useEffect(() => {
+    logout(history)
+  }, [])
+
   return (
     <div className="home-page-wrapper">
-      {logout(history)}
     </div>
   )
 }
